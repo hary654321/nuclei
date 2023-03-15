@@ -124,15 +124,11 @@ type ResultEvent struct {
 
 // NewStandardWriter creates a new output writer based on user configurations
 func NewStandardWriter(options *types.Options) (*StandardWriter, error) {
-	resumeBool := false
-	if options.Resume != "" {
-		resumeBool = true
-	}
 	auroraColorizer := aurora.NewAurora(!options.NoColor)
 
 	var outputFile io.WriteCloser
 	if options.Output != "" {
-		output, err := newFileOutputWriter(options.Output, resumeBool)
+		output, err := newFileOutputWriter(options.Output)
 		if err != nil {
 			return nil, errors.Wrap(err, "could not create output file")
 		}
@@ -140,7 +136,7 @@ func NewStandardWriter(options *types.Options) (*StandardWriter, error) {
 	}
 	var traceOutput io.WriteCloser
 	if options.TraceLogFile != "" {
-		output, err := newFileOutputWriter(options.TraceLogFile, resumeBool)
+		output, err := newFileOutputWriter(options.TraceLogFile)
 		if err != nil {
 			return nil, errors.Wrap(err, "could not create output file")
 		}
@@ -148,7 +144,7 @@ func NewStandardWriter(options *types.Options) (*StandardWriter, error) {
 	}
 	var errorOutput io.WriteCloser
 	if options.ErrorLogFile != "" {
-		output, err := newFileOutputWriter(options.ErrorLogFile, resumeBool)
+		output, err := newFileOutputWriter(options.ErrorLogFile)
 		if err != nil {
 			return nil, errors.Wrap(err, "could not create error file")
 		}
