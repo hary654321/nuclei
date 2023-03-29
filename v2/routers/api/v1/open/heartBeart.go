@@ -1,10 +1,11 @@
 package open
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
-	"zrWorker/lib/cmd"
-	"zrWorker/pkg/utils"
+
+	"github.com/gin-gonic/gin"
+	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
+	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 )
 
 type HeartBeatS struct {

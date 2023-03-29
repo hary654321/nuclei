@@ -60,6 +60,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.15
 	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.11.55
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.30.5
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/docker/go-units v0.5.0
 	github.com/fatih/structs v1.1.0
 	github.com/gin-gonic/gin v1.9.0
@@ -69,6 +70,7 @@ require (
 	github.com/kataras/jwt v0.1.8
 	github.com/klauspost/compress v1.16.0
 	github.com/labstack/echo/v4 v4.10.2
+	github.com/lcvvvv/stdio v0.1.2
 	github.com/mholt/archiver v3.1.1+incompatible
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/projectdiscovery/fasttemplate v0.0.2
@@ -84,6 +86,7 @@ require (
 	github.com/projectdiscovery/uncover v1.0.2
 	github.com/projectdiscovery/utils v0.0.16
 	github.com/projectdiscovery/wappalyzergo v0.0.81
+	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.2
 	gopkg.in/src-d/go-git.v4 v4.13.1
 	gopkg.in/yaml.v3 v3.0.1

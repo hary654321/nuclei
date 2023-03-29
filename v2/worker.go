@@ -7,5 +7,5 @@ import (
 func main() {
 
 	r := routers.InitRouter()
-	r.run()
+	r.Run()
 }

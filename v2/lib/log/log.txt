@@ -1,0 +1,3 @@
+{"level":"info","msg":"info msg","time":"2022-12-13T10:20:38+08:00"}
+{"level":"info","msg":"info msg","time":"2022-12-13T10:24:33+08:00"}
+{"level":"info","msg":"info msg","time":"2022-12-13T10:24:54+08:00"}

@@ -1,9 +1,10 @@
 package open
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
-	"zrWorker/lib/cmd"
+
+	"github.com/gin-gonic/gin"
+	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
 )
 
 func Test(c *gin.Context) {
