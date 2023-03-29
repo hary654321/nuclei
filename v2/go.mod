@@ -62,6 +62,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.30.5
 	github.com/docker/go-units v0.5.0
 	github.com/fatih/structs v1.1.0
+	github.com/gin-gonic/gin v1.9.0
 	github.com/go-git/go-git/v5 v5.5.2
 	github.com/h2non/filetype v1.1.3
 	github.com/hashicorp/go-version v1.6.0
@@ -96,15 +97,20 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.13.23 // indirect
 	github.com/bits-and-blooms/bitset v1.3.1 // indirect
 	github.com/bits-and-blooms/bloom/v3 v3.3.1 // indirect
+	github.com/bytedance/sonic v1.8.0 // indirect
+	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/cloudflare/cfssl v1.6.4-0.20221208165709-c5e40da60306 // indirect
 	github.com/cloudflare/circl v1.1.0 // indirect
 	github.com/dlclark/regexp2 v1.8.1 // indirect
+	github.com/gin-contrib/sse v0.1.0 // indirect
+	github.com/goccy/go-json v0.10.0 // indirect
 	github.com/google/certificate-transparency-go v1.1.4 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.1 // indirect
 	github.com/hbakhtiyor/strsim v0.0.0-20190107154042-4d2bbb273edf // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/karlseguin/expect v1.0.8 // indirect
 	github.com/mackerelio/go-osstat v0.2.3 // indirect
+	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
 	github.com/pjbgf/sha1cd v0.2.3 // indirect
 	github.com/projectdiscovery/asnmap v1.0.2 // indirect
 	github.com/projectdiscovery/cdncheck v0.0.4-0.20220413175814-b47bc2d578b1 // indirect
@@ -119,7 +125,10 @@ require (
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/tidwall/rtred v0.1.2 // indirect
 	github.com/tidwall/tinyqueue v0.1.1 // indirect
+	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
+	github.com/ugorji/go/codec v1.2.9 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
+	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
 	gopkg.in/djherbis/times.v1 v1.3.0 // indirect
 )
 
