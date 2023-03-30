@@ -184,31 +184,31 @@ func New(options *types.Options) (*Runner, error) {
 	}
 
 	// Initialize the input source
-	hmapInput, err := hybrid.New(&hybrid.Options{
-		Options: options,
-		NotFoundCallback: func(target string) bool {
-			if !options.Cloud {
-				return false
-			}
-			parsed, parseErr := strconv.ParseInt(target, 10, 64)
-			if parseErr != nil {
-				if err := runner.cloudClient.ExistsDataSourceItem(nucleicloud.ExistsDataSourceItemRequest{Contents: target, Type: "targets"}); err == nil {
-					runner.cloudTargets = append(runner.cloudTargets, target)
-					return true
-				}
-				return false
-			}
-			if exists, err := runner.cloudClient.ExistsTarget(parsed); err == nil {
-				runner.cloudTargets = append(runner.cloudTargets, exists.Reference)
-				return true
-			}
-			return false
-		},
-	})
-	if err != nil {
-		return nil, errors.Wrap(err, "could not create input provider")
-	}
-	runner.hmapInputProvider = hmapInput
+	// hmapInput, err := hybrid.New(&hybrid.Options{
+	// 	Options: options,
+	// 	NotFoundCallback: func(target string) bool {
+	// 		if !options.Cloud {
+	// 			return false
+	// 		}
+	// 		parsed, parseErr := strconv.ParseInt(target, 10, 64)
+	// 		if parseErr != nil {
+	// 			if err := runner.cloudClient.ExistsDataSourceItem(nucleicloud.ExistsDataSourceItemRequest{Contents: target, Type: "targets"}); err == nil {
+	// 				runner.cloudTargets = append(runner.cloudTargets, target)
+	// 				return true
+	// 			}
+	// 			return false
+	// 		}
+	// 		if exists, err := runner.cloudClient.ExistsTarget(parsed); err == nil {
+	// 			runner.cloudTargets = append(runner.cloudTargets, exists.Reference)
+	// 			return true
+	// 		}
+	// 		return false
+	// 	},
+	// })
+	// if err != nil {
+	// 	return nil, errors.Wrap(err, "could not create input provider")
+	// }
+	// runner.hmapInputProvider = hmapInput
 
 	// Create the output file if asked
 	outputWriter, err := output.NewStandardWriter(options)
@@ -352,7 +352,37 @@ func (r *Runner) Close() {
 
 // RunEnumeration sets up the input layer for giving input nuclei.
 // binary and runs the actual enumeration
-func (r *Runner) RunEnumeration() error {
+func (r *Runner) RunEnumeration(ip string) error {
+	r.options.Targets = []string{ip}
+
+	options := r.options
+	// Initialize the input source
+	hmapInput, err := hybrid.New(&hybrid.Options{
+		Options: options,
+		NotFoundCallback: func(target string) bool {
+			if !options.Cloud {
+				return false
+			}
+			parsed, parseErr := strconv.ParseInt(target, 10, 64)
+			if parseErr != nil {
+				if err := r.cloudClient.ExistsDataSourceItem(nucleicloud.ExistsDataSourceItemRequest{Contents: target, Type: "targets"}); err == nil {
+					r.cloudTargets = append(r.cloudTargets, target)
+					return true
+				}
+				return false
+			}
+			if exists, err := r.cloudClient.ExistsTarget(parsed); err == nil {
+				r.cloudTargets = append(r.cloudTargets, exists.Reference)
+				return true
+			}
+			return false
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "could not create input provider")
+	}
+	r.hmapInputProvider = hmapInput
+
 	// If user asked for new templates to be executed, collect the list from the templates' directory.
 	if r.options.NewTemplates {
 		templatesLoaded, err := r.readNewTemplatesFile()

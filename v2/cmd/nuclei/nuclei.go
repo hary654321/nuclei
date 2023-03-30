@@ -1,4 +1,4 @@
-package main
+package nuclei
 
 import (
 	"errors"
@@ -21,6 +21,7 @@ import (
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/uncover"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/http"
 	"github.com/projectdiscovery/nuclei/v2/pkg/types"
+	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils/monitor"
 	errorutil "github.com/projectdiscovery/utils/errors"
 	fileutil "github.com/projectdiscovery/utils/file"
@@ -30,13 +31,17 @@ var (
 	cfgFile    string
 	memProfile string // optional profile file path
 	options    = &types.Options{}
+	max        = 3
+	TaskCount  = 0
 )
 
-func Scan(ip, file string) {
+var runnerSin *runner.Runner
+
+func init() {
 	if err := runner.ConfigureOptions(); err != nil {
 		gologger.Fatal().Msgf("Could not initialize options: %s\n", err)
 	}
-	flagSet := readConfig(ip, file)
+	flagSet := readConfig()
 	configPath, _ := flagSet.GetConfigFilePath()
 
 	if options.ListDslSignatures {
@@ -71,13 +76,10 @@ func Scan(ip, file string) {
 		defer cancel()
 	}
 
-	nucleiRunner, err := runner.New(options)
-	if err != nil {
-		gologger.Fatal().Msgf("Could not create runner: %s\n", err)
-	}
-	if nucleiRunner == nil {
-		return
-	}
+	runnerSin, _ = runner.New(options)
+}
+
+func Scan(ip string) {
 
 	// Setup graceful exits
 	resumeFileName := types.DefaultResumeFilePath()
@@ -87,34 +89,44 @@ func Scan(ip, file string) {
 	go func() {
 		for range c {
 			gologger.Info().Msgf("CTRL+C pressed: Exiting\n")
-			nucleiRunner.Close()
+			runnerSin.Close()
 			if options.ShouldSaveResume() {
 				gologger.Info().Msgf("Creating resume file: %s\n", resumeFileName)
-				err := nucleiRunner.SaveResumeConfig(resumeFileName)
+				err := runnerSin.SaveResumeConfig(resumeFileName)
 				if err != nil {
 					gologger.Error().Msgf("Couldn't create resume file: %s\n", err)
 				}
 			}
-			os.Exit(1)
 		}
 	}()
 
-	if err := nucleiRunner.RunEnumeration(); err != nil {
-		if options.Validate {
-			gologger.Fatal().Msgf("Could not validate templates: %s\n", err)
+	for {
+		if TaskCount > max {
+			time.Sleep(1 * time.Second)
 		} else {
-			gologger.Fatal().Msgf("Could not run nuclei: %s\n", err)
+			TaskCount++
+			if err := runnerSin.RunEnumeration(ip); err != nil {
+				if options.Validate {
+					gologger.Fatal().Msgf("Could not validate templates: %s\n", err)
+				} else {
+					gologger.Fatal().Msgf("Could not run nuclei: %s\n", err)
+				}
+			}
+			TaskCount--
+			break
 		}
 	}
-	nucleiRunner.Close()
-	// on successful execution remove the resume file in case it exists
-	if fileutil.FileExists(resumeFileName) {
-		os.Remove(resumeFileName)
-	}
+
+	// nucleiRunner.Close()
+	// // on successful execution remove the resume file in case it exists
+	// if fileutil.FileExists(resumeFileName) {
+	// 	os.Remove(resumeFileName)
+	// }
 }
 
-func readConfig(ip, file string) *goflags.FlagSet {
+func readConfig() *goflags.FlagSet {
 
+	file := "/zrtx/log/cyberspace/poc" + utils.GetHour() + ".json"
 	flagSet := goflags.NewFlagSet()
 	flagSet.SetDescription(`Nuclei is a fast, template based vulnerability scanner focusing
 on extensive configurability, massive extensibility and ease of use.`)
@@ -124,7 +136,7 @@ on extensive configurability, massive extensibility and ease of use.`)
 	*/
 
 	flagSet.CreateGroup("input", "Target",
-		flagSet.StringSliceVarP(&options.Targets, "target", "u", []string{ip}, "target URLs/hosts to scan", goflags.StringSliceOptions),
+		// flagSet.StringSliceVarP(&options.Targets, "target", "u", []string{ip}, "target URLs/hosts to scan", goflags.StringSliceOptions),
 		flagSet.StringVarP(&options.TargetsFilePath, "list", "l", "", "path to file containing a list of target URLs/hosts to scan (one per line)"),
 		flagSet.StringVar(&options.Resume, "resume", "", "resume scan using resume.cfg (clustering will be disabled)"),
 		flagSet.BoolVarP(&options.ScanAllIPs, "scan-all-ips", "sa", false, "scan all the IP's associated with dns record"),
