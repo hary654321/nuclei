@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
+	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 )
 
 func RecTask(c *gin.Context) {
@@ -16,6 +17,12 @@ func RecTask(c *gin.Context) {
 		strArrayNew := strings.Split(mul, ",")
 		go nuclei.Scan(strArrayNew)
 	}
+
+	data := make(map[string]interface{})
+
+	data["taskId"] = 1
+	data["runTaskId"] = 1
+	data["startTime"] = utils.GetTime()
 
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,

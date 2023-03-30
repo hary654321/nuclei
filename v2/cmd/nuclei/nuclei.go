@@ -14,6 +14,7 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/levels"
 	"github.com/projectdiscovery/interactsh/pkg/client"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/runner"
 	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
 	"github.com/projectdiscovery/nuclei/v2/pkg/operators/common/dsl"
@@ -30,7 +31,7 @@ var (
 	cfgFile    string
 	memProfile string // optional profile file path
 	options    = &types.Options{}
-	max        = 3
+	max        = 10
 	TaskCount  = 0
 )
 
@@ -80,30 +81,11 @@ func init() {
 
 func Scan(ip []string) {
 
-	// Setup graceful exits
-	// resumeFileName := types.DefaultResumeFilePath()
-	// c := make(chan os.Signal, 1)
-	// defer close(c)
-	// signal.Notify(c, os.Interrupt)
-	// go func() {
-	// 	for range c {
-	// 		gologger.Info().Msgf("CTRL+C pressed: Exiting\n")
-	// 		runnerSin.Close()
-	// 		if options.ShouldSaveResume() {
-	// 			gologger.Info().Msgf("Creating resume file: %s\n", resumeFileName)
-	// 			err := runnerSin.SaveResumeConfig(resumeFileName)
-	// 			if err != nil {
-	// 				gologger.Error().Msgf("Couldn't create resume file: %s\n", err)
-	// 			}
-	// 		}
-	// 	}
-	// }()
-
 	for {
 		if TaskCount > max {
 			time.Sleep(1 * time.Second)
 		} else {
-			TaskCount++
+			TaskCount += len(ip)
 			if err := runnerSin.RunEnumeration(ip); err != nil {
 				if options.Validate {
 					gologger.Fatal().Msgf("Could not validate templates: %s\n", err)
@@ -111,16 +93,12 @@ func Scan(ip []string) {
 					gologger.Fatal().Msgf("Could not run nuclei: %s\n", err)
 				}
 			}
-			TaskCount--
+			TaskCount -= len(ip)
+			slog.Println(slog.DEBUG, "运行完成TaskCount:", TaskCount)
 			break
 		}
 	}
 
-	// nucleiRunner.Close()
-	// // on successful execution remove the resume file in case it exists
-	// if fileutil.FileExists(resumeFileName) {
-	// 	os.Remove(resumeFileName)
-	// }
 }
 
 func readConfig() *goflags.FlagSet {
