@@ -15,7 +15,7 @@ func InitRouter() *gin.Engine {
 	//pprof.Register(r)
 	r.Use(gin.Recovery())
 	r.Use(Cors())
-	gin.SetMode("production")
+	gin.SetMode("debug")
 	//setLogFom(r)
 	//loadRes(r)
 

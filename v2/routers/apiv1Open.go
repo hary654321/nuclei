@@ -15,8 +15,7 @@ func loadApiV1Open(r *gin.Engine) {
 	{
 		//心跳
 		openApi.GET("/heartbeat", open.HeartBeat)
-		//获取任务结果
-		openApi.GET("/getTaskRes", open.GetTaskRes)
+
 		//接收任务
 		openApi.POST("/recTask", open.RecTask)
 
@@ -26,8 +25,6 @@ func loadApiV1Open(r *gin.Engine) {
 		//zip压缩包结果
 		openApi.GET("/zip", open.GetZip)
 
-		//图片
-		openApi.GET("/image", open.Image)
 		//结果数据
 		openApi.GET("/taskCount", open.TaskCount)
 
@@ -35,11 +32,7 @@ func loadApiV1Open(r *gin.Engine) {
 
 		openApi.GET("/resLog", open.ResLog)
 
-		openApi.GET("/ip", open.Ip)
-
 		openApi.GET("/test", open.Test)
-
-		openApi.GET("/poc", open.PocScan)
 
 	}
 }

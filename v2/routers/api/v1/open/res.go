@@ -1,0 +1,38 @@
+package open
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
+
+	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
+)
+
+func GetZip(c *gin.Context) {
+
+	slog.Printf(slog.DEBUG, "GetZip")
+	day := c.Query("day")
+	if day == "" {
+		day = utils.GetHour()
+	}
+	LogPath := "/zrtx/log/cyberspace"
+	target := LogPath + "/" + day + ".zip"
+
+	go utils.ZipFile(LogPath, target, "*"+day+".json")
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "",
+		"data": target,
+	})
+}
+
+func TaskCount(c *gin.Context) {
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"msg":  "",
+		"data": "",
+	})
+}

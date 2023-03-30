@@ -68,7 +68,7 @@ func Open() gin.HandlerFunc {
 		var code int
 		var data interface{}
 		token := c.GetHeader("Authorization")
-		if token != "BasicAuth" {
+		if token != "Basic enc6Y2g=" {
 			code = ERROR
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"code": code,
