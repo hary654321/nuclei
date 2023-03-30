@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"os/signal"
 	"path/filepath"
 	"runtime"
 	"runtime/pprof"
@@ -79,26 +78,26 @@ func init() {
 	runnerSin, _ = runner.New(options)
 }
 
-func Scan(ip string) {
+func Scan(ip []string) {
 
 	// Setup graceful exits
-	resumeFileName := types.DefaultResumeFilePath()
-	c := make(chan os.Signal, 1)
-	defer close(c)
-	signal.Notify(c, os.Interrupt)
-	go func() {
-		for range c {
-			gologger.Info().Msgf("CTRL+C pressed: Exiting\n")
-			runnerSin.Close()
-			if options.ShouldSaveResume() {
-				gologger.Info().Msgf("Creating resume file: %s\n", resumeFileName)
-				err := runnerSin.SaveResumeConfig(resumeFileName)
-				if err != nil {
-					gologger.Error().Msgf("Couldn't create resume file: %s\n", err)
-				}
-			}
-		}
-	}()
+	// resumeFileName := types.DefaultResumeFilePath()
+	// c := make(chan os.Signal, 1)
+	// defer close(c)
+	// signal.Notify(c, os.Interrupt)
+	// go func() {
+	// 	for range c {
+	// 		gologger.Info().Msgf("CTRL+C pressed: Exiting\n")
+	// 		runnerSin.Close()
+	// 		if options.ShouldSaveResume() {
+	// 			gologger.Info().Msgf("Creating resume file: %s\n", resumeFileName)
+	// 			err := runnerSin.SaveResumeConfig(resumeFileName)
+	// 			if err != nil {
+	// 				gologger.Error().Msgf("Couldn't create resume file: %s\n", err)
+	// 			}
+	// 		}
+	// 	}
+	// }()
 
 	for {
 		if TaskCount > max {

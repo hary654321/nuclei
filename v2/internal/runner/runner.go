@@ -352,8 +352,8 @@ func (r *Runner) Close() {
 
 // RunEnumeration sets up the input layer for giving input nuclei.
 // binary and runs the actual enumeration
-func (r *Runner) RunEnumeration(ip string) error {
-	r.options.Targets = []string{ip}
+func (r *Runner) RunEnumeration(ip []string) error {
+	r.options.Targets = ip
 
 	options := r.options
 	// Initialize the input source
