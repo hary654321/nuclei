@@ -1,6 +1,10 @@
 package main
 
 import (
+	"time"
+
+	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 	"github.com/projectdiscovery/nuclei/v2/routers"
@@ -13,5 +17,15 @@ func main() {
 	var restart = "/zrtx/log/cyberspace/restart" + utils.GetHour() + ".json"
 	utils.WriteAppend(restart, utils.GetTime())
 	r := routers.InitRouter()
+	go heart()
 	r.Run("0.0.0.0:18000")
+}
+
+func heart() {
+
+	for {
+		slog.Println(slog.DEBUG, "count ", nuclei.TaskCount)
+
+		time.Sleep(5 * time.Second)
+	}
 }
