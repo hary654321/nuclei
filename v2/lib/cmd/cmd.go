@@ -26,7 +26,7 @@ func GetVersion() string {
 func CleanLog() {
 
 	cmd := exec.Command("bash", "-c", "find /zrtx/log/cyberspace  -mtime +1 -name \"*\" | xargs -I {} rm -rf {}")
-	cmd1 := exec.Command("bash", "-c", "find /tmp  -mtime +1 -name \"*\" |grep nuc| xargs -I {} rm -rf {}")
+	cmd1 := exec.Command("bash", "-c", "rm -rf  /tmp/nuc*")
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		slog.Println(slog.DEBUG, err)
