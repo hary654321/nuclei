@@ -12,10 +12,13 @@ import (
 func RecTask(c *gin.Context) {
 
 	mul := c.PostForm("mul")
-	// var ipLastPath = "/zrtx/log/cyberspace/ipLast" + utils.GetHour() + ".json"
+	var ipLastPath = "/zrtx/log/cyberspace/ipLast" + utils.GetHour() + ".json"
 	if mul != "" {
 		strArrayNew := strings.Split(mul, ",")
 		go nuclei.Scan(strArrayNew)
+		for _, v := range strArrayNew {
+			utils.WriteAppend(ipLastPath, v)
+		}
 	}
 
 	data := make(map[string]interface{})
