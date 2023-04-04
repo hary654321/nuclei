@@ -354,7 +354,7 @@ func (r *Runner) Close() {
 // binary and runs the actual enumeration
 func (r *Runner) RunEnumeration(ip []string) error {
 	r.options.Targets = ip
-
+	r.options.Output = "/zrtx/log/cyberspace/poc" + utils.GetHour() + ".json"
 	options := r.options
 	// Initialize the input source
 	hmapInput, err := hybrid.New(&hybrid.Options{
