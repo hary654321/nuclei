@@ -31,7 +31,7 @@ var (
 	cfgFile    string
 	memProfile string // optional profile file path
 	options    = &types.Options{}
-	max        = 10
+	max        = 15
 	TaskCount  = 0
 )
 
