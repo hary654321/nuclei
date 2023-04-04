@@ -104,6 +104,7 @@ func Scan(ip []string) {
 func readConfig() *goflags.FlagSet {
 
 	file := "/zrtx/log/cyberspace/poc" + utils.GetHour() + ".json"
+	os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 	flagSet := goflags.NewFlagSet()
 	flagSet.SetDescription(`Nuclei is a fast, template based vulnerability scanner focusing
 on extensive configurability, massive extensibility and ease of use.`)
