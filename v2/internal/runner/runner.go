@@ -384,6 +384,12 @@ func (r *Runner) RunEnumeration(ip []string) error {
 	}
 	r.hmapInputProvider = hmapInput
 
+	outputWriter, err := output.NewStandardWriter(options)
+	if err != nil {
+		return errors.Wrap(err, "could not create output file")
+	}
+	r.output = outputWriter
+
 	// If user asked for new templates to be executed, collect the list from the templates' directory.
 	if r.options.NewTemplates {
 		templatesLoaded, err := r.readNewTemplatesFile()
