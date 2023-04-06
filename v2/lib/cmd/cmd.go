@@ -42,7 +42,7 @@ func CleanLog() {
 
 func Dirmap(addr string) {
 
-	cmd := exec.Command("bash", "-c", "cd /tmp && python3  dirmap.py -i "+addr+" -lcf")
+	cmd := exec.Command("bash", "-c", "cd /tmp/dirmap-master && python3  dirmap.py -i "+addr+" -lcf")
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		slog.Println(slog.DEBUG, err)
