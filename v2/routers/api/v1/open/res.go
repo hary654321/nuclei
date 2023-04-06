@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
 	"github.com/projectdiscovery/nuclei/v2/core/slog"
+	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
 
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 )
@@ -34,6 +35,6 @@ func TaskCount(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,
 		"msg":  "",
-		"data": nuclei.TaskCount,
+		"data": nuclei.TaskCount + cmd.TaskCount,
 	})
 }

@@ -24,7 +24,7 @@ func main() {
 func heart() {
 
 	for {
-		slog.Println(slog.DEBUG, "count ", nuclei.TaskCount)
+		slog.Println(slog.DEBUG, "poc ", nuclei.TaskCount, "=====", "dir", cmd.TaskCount)
 
 		time.Sleep(5 * time.Second)
 	}

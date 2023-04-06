@@ -6,18 +6,27 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
+	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 )
 
 func RecTask(c *gin.Context) {
 
 	mul := c.PostForm("mul")
+	addr := c.PostForm("addr")
 	var ipLastPath = "/zrtx/log/cyberspace/ipLast" + utils.GetHour() + ".json"
 	if mul != "" {
 		strArrayNew := strings.Split(mul, ",")
 		go nuclei.Scan(strArrayNew)
 		for _, v := range strArrayNew {
 			utils.WriteAppend(ipLastPath, v)
+		}
+	}
+
+	if addr != "" {
+		strArrayNew := strings.Split(addr, ",")
+		for _, v := range strArrayNew {
+			go cmd.Scan(v)
 		}
 	}
 
