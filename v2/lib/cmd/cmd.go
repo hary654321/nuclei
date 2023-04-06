@@ -61,8 +61,9 @@ func Scan(ip string) {
 		if TaskCount > max {
 			time.Sleep(1 * time.Second)
 		} else {
+			TaskCount++
 			Dirmap(ip)
-			TaskCount -= len(ip)
+			TaskCount--
 			slog.Println(slog.DEBUG, "DirmapTaskCount:", TaskCount)
 			break
 		}

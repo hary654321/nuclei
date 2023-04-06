@@ -13,7 +13,7 @@ import (
 func RecTask(c *gin.Context) {
 
 	mul := c.PostForm("mul")
-	addr := c.PostForm("addr")
+	httpAddr := c.PostForm("httpAddr")
 	var ipLastPath = "/zrtx/log/cyberspace/ipLast" + utils.GetHour() + ".json"
 	if mul != "" {
 		strArrayNew := strings.Split(mul, ",")
@@ -23,8 +23,8 @@ func RecTask(c *gin.Context) {
 		}
 	}
 
-	if addr != "" {
-		strArrayNew := strings.Split(addr, ",")
+	if httpAddr != "" {
+		strArrayNew := strings.Split(httpAddr, ",")
 		for _, v := range strArrayNew {
 			go cmd.Scan(v)
 		}
