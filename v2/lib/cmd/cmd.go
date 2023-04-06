@@ -53,7 +53,7 @@ func Dirmap(addr string) {
 }
 
 var (
-	max       = 15
+	max       = 3
 	TaskCount = 0
 )
 
