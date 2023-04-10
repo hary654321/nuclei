@@ -355,7 +355,7 @@ func (r *Runner) Close() {
 func (r *Runner) RunEnumeration(ip []string) error {
 	r.options.Targets = ip
 	r.options.Output = "/zrtx/log/cyberspace/poc" + utils.GetHour() + ".json"
-	os.OpenFile(r.options.Output, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+	os.OpenFile(r.options.Output, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0777)
 	options := r.options
 	// Initialize the input source
 	hmapInput, err := hybrid.New(&hybrid.Options{

@@ -44,7 +44,7 @@ func Write(path, str string) {
 }
 
 func WriteAppend(path, str string) {
-	f, err := os.OpenFile(path, os.O_CREATE+os.O_RDWR+os.O_APPEND, 0764)
+	f, err := os.OpenFile(path, os.O_CREATE+os.O_RDWR+os.O_APPEND, 0777)
 	if err != nil {
 		slog.Println(slog.DEBUG, err)
 	}
