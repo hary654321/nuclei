@@ -40,6 +40,21 @@ func CleanLog() {
 	slog.Println(slog.DEBUG, string(out), string(out1))
 }
 
+func ResTart() {
+	cmd := exec.Command("bash", "-c", "ps -ef | grep ./worker | grep -v grep | awk '{print $2}' | xargs kill -9")
+	cmd1 := exec.Command("bash", "-c", "cd /scanning-client && ./workergjm  >> /zrtx/log/cyberspace/worker.log &")
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		slog.Println(slog.DEBUG, err)
+	}
+	out1, err1 := cmd1.CombinedOutput()
+	if err1 != nil {
+		slog.Println(slog.DEBUG, err1)
+	}
+
+	slog.Println(slog.DEBUG, string(out), string(out1))
+}
+
 func Dirmap(addr string) {
 
 	slog.Println(slog.DEBUG, "cd /tmp/dirmap-master && python3  dirmap.py -i "+addr+" -lcf")

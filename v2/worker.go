@@ -26,6 +26,9 @@ func heart() {
 	for {
 		slog.Println(slog.DEBUG, "poc ", nuclei.TaskCount, "=====", "dir", cmd.TaskCount)
 
+		if time.Now().Unix()%3600 < 6 {
+			cmd.ResTart()
+		}
 		time.Sleep(5 * time.Second)
 	}
 }
