@@ -17,6 +17,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/runner/nucleicloud"
 
 	"github.com/blang/semver"
@@ -672,7 +673,9 @@ func (r *Runner) executeTemplatesInput(store *loader.Store, engine *core.Engine)
 	finalTemplates = append(finalTemplates, store.Workflows()...)
 
 	var totalRequests int64
+
 	for _, t := range finalTemplates {
+		slog.Println(slog.DEBUG, "finalTemplates", t)
 		if len(t.Workflows) > 0 {
 			continue
 		}

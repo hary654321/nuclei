@@ -6,6 +6,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/catalog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
 	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/loader/filter"
@@ -142,6 +143,7 @@ func New(config *Config) (*Store, error) {
 	}
 	// Handle a case with no templates or workflows, where we use base directory
 	if len(store.finalTemplates) == 0 && len(store.finalWorkflows) == 0 && !urlBasedTemplatesProvided {
+		slog.Println(slog.DEBUG, "TemplatesDirectory", config.TemplatesDirectory)
 		store.finalTemplates = []string{config.TemplatesDirectory}
 	}
 	return store, nil
@@ -165,6 +167,7 @@ func (store *Store) RegisterPreprocessor(preprocessor templates.Preprocessor) {
 // Load loads all the templates from a store, performs filtering and returns
 // the complete compiled templates for a nuclei execution configuration.
 func (store *Store) Load() {
+	slog.Println(slog.DEBUG, "store.finalTemplates ", store.finalTemplates)
 	store.templates = store.LoadTemplates(store.finalTemplates)
 	store.workflows = store.LoadWorkflows(store.finalWorkflows)
 }
