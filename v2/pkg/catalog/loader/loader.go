@@ -129,6 +129,7 @@ func New(config *Config) (*Store, error) {
 		if err != nil {
 			return store, err
 		}
+		slog.Println(slog.DEBUG, "remoteTemplates", len(remoteTemplates), remoteTemplates)
 		store.finalTemplates = append(store.finalTemplates, remoteTemplates...)
 		store.finalWorkflows = append(store.finalWorkflows, remoteWorkflows...)
 	}

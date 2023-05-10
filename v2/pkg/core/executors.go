@@ -18,6 +18,7 @@ import (
 // executeAllSelfContained executes all self contained templates that do not use `target`
 func (e *Engine) executeAllSelfContained(alltemplates []*templates.Template, results *atomic.Bool, sg *sync.WaitGroup) {
 	for _, v := range alltemplates {
+		// slog.Println(slog.DEBUG, "Executing template===============", v.Path)
 		sg.Add(1)
 		go func(template *templates.Template) {
 			defer sg.Done()

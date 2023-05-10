@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/model"
 	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
@@ -244,6 +245,7 @@ func (e *ClusterExecuter) Execute(input *contextargs.Context) (bool, error) {
 	dynamicValues := make(map[string]interface{})
 	err := e.requests.ExecuteWithResults(inputItem, dynamicValues, previous, func(event *output.InternalWrappedEvent) {
 		for _, operator := range e.operators {
+			slog.Println(slog.DEBUG, "executing operator", operator.templateID, operator.templatePath, operator.templateInfo)
 			result, matched := operator.operator.Execute(event.InternalEvent, e.requests.Match, e.requests.Extract, e.options.Options.Debug || e.options.Options.DebugResponse)
 			event.InternalEvent["template-id"] = operator.templateID
 			event.InternalEvent["template-path"] = operator.templatePath

@@ -16,6 +16,7 @@ import (
 	"github.com/projectdiscovery/interactsh/pkg/client"
 	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/runner"
+	"github.com/projectdiscovery/nuclei/v2/lib/cache"
 	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
 	"github.com/projectdiscovery/nuclei/v2/pkg/operators/common/dsl"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/uncover"
@@ -79,14 +80,14 @@ func init() {
 	runnerSin, _ = runner.New(options)
 }
 
-func Scan(ip []string) {
+func Scan(ip []string, tmp string, taskId string) {
 
 	for {
 		if TaskCount > max {
 			time.Sleep(1 * time.Second)
 		} else {
 			TaskCount += len(ip)
-			if err := runnerSin.RunEnumeration(ip); err != nil {
+			if err := runnerSin.RunEnumeration(ip, tmp); err != nil {
 				if options.Validate {
 					gologger.Fatal().Msgf("Could not validate templates: %s\n", err)
 				} else {
@@ -95,6 +96,8 @@ func Scan(ip []string) {
 			}
 			TaskCount -= len(ip)
 			slog.Println(slog.DEBUG, "运行完成TaskCount:", TaskCount)
+
+			cache.Set(taskId, []byte(""))
 			break
 		}
 	}

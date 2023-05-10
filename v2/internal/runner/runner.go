@@ -17,7 +17,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/runner/nucleicloud"
 
 	"github.com/blang/semver"
@@ -353,8 +352,9 @@ func (r *Runner) Close() {
 
 // RunEnumeration sets up the input layer for giving input nuclei.
 // binary and runs the actual enumeration
-func (r *Runner) RunEnumeration(ip []string) error {
+func (r *Runner) RunEnumeration(ip []string, tmp string) error {
 	r.options.Targets = ip
+	r.options.Templates = []string{tmp}
 	r.options.Output = "/zrtx/log/cyberspace/poc" + utils.GetHour() + ".json"
 	os.OpenFile(r.options.Output, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0777)
 	options := r.options
@@ -649,6 +649,7 @@ func (r *Runner) executeSmartWorkflowInput(executerOpts protocols.ExecuterOption
 func (r *Runner) executeTemplatesInput(store *loader.Store, engine *core.Engine) (*atomic.Bool, error) {
 	var unclusteredRequests int64
 	for _, template := range store.Templates() {
+		// slog.Println(slog.DEBUG, "store.Templates()", template)
 		// workflows will dynamically adjust the totals while running, as
 		// it can't be known in advance which requests will be called
 		if len(template.Workflows) > 0 {
@@ -675,7 +676,7 @@ func (r *Runner) executeTemplatesInput(store *loader.Store, engine *core.Engine)
 	var totalRequests int64
 
 	for _, t := range finalTemplates {
-		slog.Println(slog.DEBUG, "finalTemplates", t)
+		// slog.Println(slog.DEBUG, "finalTemplates", t)
 		if len(t.Workflows) > 0 {
 			continue
 		}

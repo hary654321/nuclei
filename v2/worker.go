@@ -5,6 +5,7 @@ import (
 
 	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
 	"github.com/projectdiscovery/nuclei/v2/core/slog"
+	"github.com/projectdiscovery/nuclei/v2/lib/cache"
 	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 	"github.com/projectdiscovery/nuclei/v2/routers"
@@ -16,6 +17,9 @@ func main() {
 	utils.Write("/zrtx/log/cyberspace/worker.log", "")
 	var restart = "/zrtx/log/cyberspace/restart" + utils.GetHour() + ".json"
 	utils.WriteAppend(restart, utils.GetTime())
+
+	cache.NewCacheClient(time.Duration(30))
+
 	r := routers.InitRouter()
 	go heart()
 	r.Run("0.0.0.0:18000")

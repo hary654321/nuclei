@@ -53,6 +53,7 @@ require (
 
 require (
 	github.com/DataDog/gostackparse v0.6.0
+	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/antchfx/xmlquery v1.3.15
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
 	github.com/aws/aws-sdk-go-v2 v1.17.5

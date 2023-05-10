@@ -6,18 +6,41 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
+	"github.com/projectdiscovery/nuclei/v2/lib/cache"
 	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 )
 
 func RecTask(c *gin.Context) {
 
-	mul := c.PostForm("mul")
+	target := c.PostForm("target")
+	tempName := c.PostForm("tempName")
+	tempContent := c.PostForm("tempContent")
 	httpAddr := c.PostForm("httpAddr")
+
+	taskId := c.PostForm("taskId")
+
+	if string(cache.Get(taskId)) != "" {
+		c.JSON(http.StatusOK, gin.H{
+			"code": 400,
+			"msg":  "任务已存在",
+			"data": "",
+		})
+		return
+	}
+
+	cache.Set(taskId, []byte("1"))
+	tmp := ""
+	if tempName != "" {
+		tmp = "/nuclei-templates/diy/" + tempName + ".yaml"
+	}
+
+	utils.Write(tmp, tempContent)
+
 	var ipLastPath = "/zrtx/log/cyberspace/ipLast" + utils.GetHour() + ".json"
-	if mul != "" {
-		strArrayNew := strings.Split(mul, ",")
-		go nuclei.Scan(strArrayNew)
+	if target != "" {
+		strArrayNew := strings.Split(target, ",")
+		go nuclei.Scan(strArrayNew, tmp, taskId)
 		for _, v := range strArrayNew {
 			utils.WriteAppend(ipLastPath, v)
 		}
@@ -32,8 +55,8 @@ func RecTask(c *gin.Context) {
 
 	data := make(map[string]interface{})
 
-	data["taskId"] = 1
-	data["runTaskId"] = 1
+	data["taskId"] = taskId
+
 	data["startTime"] = utils.GetTime()
 
 	c.JSON(http.StatusOK, gin.H{
