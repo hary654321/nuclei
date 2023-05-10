@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
 	"github.com/projectdiscovery/nuclei/v2/lib/cache"
-	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 )
 
@@ -16,7 +15,7 @@ func RecTask(c *gin.Context) {
 	target := c.PostForm("target")
 	tempName := c.PostForm("tempName")
 	tempContent := c.PostForm("tempContent")
-	httpAddr := c.PostForm("httpAddr")
+	tempPath := c.PostForm("tempPath")
 
 	taskId := c.PostForm("taskId")
 
@@ -30,27 +29,20 @@ func RecTask(c *gin.Context) {
 	}
 
 	cache.Set(taskId, []byte("1"))
+
+	temPre := "/root/nuclei-templates"
+
 	tmp := ""
-	if tempName != "" {
-		tmp = "/nuclei-templates/diy/" + tempName + ".yaml"
+	if tempContent != "" {
+		tmp = temPre + "/diy/" + tempName + ".yaml"
+		utils.Write(tmp, tempContent)
+	} else {
+		tmp = temPre + tempPath
 	}
 
-	utils.Write(tmp, tempContent)
-
-	var ipLastPath = "/zrtx/log/cyberspace/ipLast" + utils.GetHour() + ".json"
 	if target != "" {
 		strArrayNew := strings.Split(target, ",")
-		go nuclei.Scan(strArrayNew, tmp, taskId)
-		for _, v := range strArrayNew {
-			utils.WriteAppend(ipLastPath, v)
-		}
-	}
-
-	if httpAddr != "" {
-		strArrayNew := strings.Split(httpAddr, ",")
-		for _, v := range strArrayNew {
-			go cmd.Scan(v)
-		}
+		nuclei.Scan(strArrayNew, tmp, taskId)
 	}
 
 	data := make(map[string]interface{})
@@ -58,6 +50,8 @@ func RecTask(c *gin.Context) {
 	data["taskId"] = taskId
 
 	data["startTime"] = utils.GetTime()
+
+	data["res"] = utils.Read("/zrtx/log/cyberspace/" + taskId + ".json")
 
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,

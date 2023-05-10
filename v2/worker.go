@@ -28,7 +28,7 @@ func main() {
 func heart() {
 
 	for {
-		slog.Println(slog.DEBUG, "poc ", nuclei.TaskCount, "=====", "dir", cmd.TaskCount)
+		slog.Println(slog.DEBUG, "poc====", nuclei.TaskCount)
 
 		if time.Now().Unix()%3600 < 6 {
 			cmd.ResTart()

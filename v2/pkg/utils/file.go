@@ -34,7 +34,7 @@ func ReadLineData(userDict string) (users []string, err error) {
 }
 
 func Write(path, str string) {
-	f, err := os.OpenFile(path, os.O_CREATE+os.O_RDWR+os.O_TRUNC, 0764)
+	f, err := os.OpenFile(path, os.O_CREATE+os.O_RDWR+os.O_TRUNC, 0777)
 	if err != nil {
 		slog.Println(slog.DEBUG, err)
 	}

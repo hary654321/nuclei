@@ -352,10 +352,14 @@ func (r *Runner) Close() {
 
 // RunEnumeration sets up the input layer for giving input nuclei.
 // binary and runs the actual enumeration
-func (r *Runner) RunEnumeration(ip []string, tmp string) error {
+func (r *Runner) RunEnumeration(ip []string, taskId, tmp string) error {
 	r.options.Targets = ip
-	r.options.Templates = []string{tmp}
-	r.options.Output = "/zrtx/log/cyberspace/poc" + utils.GetHour() + ".json"
+	if tmp != "" {
+		r.options.Templates = []string{tmp}
+	} else {
+		r.options.Templates = []string{}
+	}
+	r.options.Output = "/zrtx/log/cyberspace/" + taskId + ".json"
 	os.OpenFile(r.options.Output, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0777)
 	options := r.options
 	// Initialize the input source

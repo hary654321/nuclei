@@ -22,7 +22,6 @@ import (
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/uncover"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/http"
 	"github.com/projectdiscovery/nuclei/v2/pkg/types"
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
 	"github.com/projectdiscovery/nuclei/v2/pkg/utils/monitor"
 	errorutil "github.com/projectdiscovery/utils/errors"
 	fileutil "github.com/projectdiscovery/utils/file"
@@ -81,33 +80,21 @@ func init() {
 }
 
 func Scan(ip []string, tmp string, taskId string) {
-
-	for {
-		if TaskCount > max {
-			time.Sleep(1 * time.Second)
+	TaskCount++
+	if err := runnerSin.RunEnumeration(ip, taskId, tmp); err != nil {
+		if options.Validate {
+			gologger.Fatal().Msgf("Could not validate templates: %s\n", err)
 		} else {
-			TaskCount += len(ip)
-			if err := runnerSin.RunEnumeration(ip, tmp); err != nil {
-				if options.Validate {
-					gologger.Fatal().Msgf("Could not validate templates: %s\n", err)
-				} else {
-					gologger.Fatal().Msgf("Could not run nuclei: %s\n", err)
-				}
-			}
-			TaskCount -= len(ip)
-			slog.Println(slog.DEBUG, "运行完成TaskCount:", TaskCount)
-
-			cache.Set(taskId, []byte(""))
-			break
+			gologger.Fatal().Msgf("Could not run nuclei: %s\n", err)
 		}
 	}
-
+	slog.Println(slog.DEBUG, "运行完成TaskCount:", TaskCount)
+	cache.Set(taskId, []byte(""))
+	TaskCount--
 }
 
 func readConfig() *goflags.FlagSet {
 
-	file := "/zrtx/log/cyberspace/poc" + utils.GetHour() + ".json"
-	utils.WriteAppend(file, "")
 	flagSet := goflags.NewFlagSet()
 	flagSet.SetDescription(`Nuclei is a fast, template based vulnerability scanner focusing
 on extensive configurability, massive extensibility and ease of use.`)
@@ -157,7 +144,7 @@ on extensive configurability, massive extensibility and ease of use.`)
 	)
 
 	flagSet.CreateGroup("output", "Output",
-		flagSet.StringVarP(&options.Output, "output", "o", file, "output file to write found issues/vulnerabilities"),
+		// flagSet.StringVarP(&options.Output, "output", "o", file, "output file to write found issues/vulnerabilities"),
 		flagSet.BoolVarP(&options.StoreResponse, "store-resp", "sresp", false, "store all request/response passed through nuclei to output directory"),
 		flagSet.StringVarP(&options.StoreResponseDir, "store-resp-dir", "srd", runner.DefaultDumpTrafficOutputFolder, "store all request/response passed through nuclei to custom directory"),
 		flagSet.BoolVar(&options.Silent, "silent", false, "display findings only"),
