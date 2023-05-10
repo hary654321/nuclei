@@ -38,6 +38,15 @@ func RecTask(c *gin.Context) {
 		utils.Write(tmp, tempContent)
 	} else {
 		tmp = temPre + tempPath
+
+		if !utils.FileExists(tmp) {
+			c.JSON(http.StatusOK, gin.H{
+				"code": 400,
+				"msg":  "模板不存在",
+				"data": "",
+			})
+			return
+		}
 	}
 
 	if target != "" {

@@ -199,3 +199,8 @@ func ByteCountIEC(b uint64) string {
 	return fmt.Sprintf("%.1f %ciB",
 		float64(b)/float64(div), "KMGTPE"[exp])
 }
+
+func FileExists(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil || os.IsExist(err)
+}
