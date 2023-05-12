@@ -6,7 +6,9 @@ import (
 
 	"github.com/remeh/sizedwaitgroup"
 
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
+	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/contextargs"
 	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
 	"github.com/projectdiscovery/nuclei/v2/pkg/templates/types"
@@ -30,11 +32,12 @@ func (e *Engine) ExecuteWithResults(templatesList []*templates.Template, target 
 }
 
 // ExecuteScanWithOpts executes scan with given scanStatergy
-func (e *Engine) ExecuteScanWithOpts(templatesList []*templates.Template, target InputProvider, noCluster bool) *atomic.Bool {
+func (e *Engine) ExecuteScanWithOpts(executerOpts protocols.ExecuterOptions, templatesList []*templates.Template, target InputProvider, noCluster bool) *atomic.Bool {
 	results := &atomic.Bool{}
 	selfcontainedWg := &sync.WaitGroup{}
 
 	var finalTemplates []*templates.Template
+	slog.Println(slog.DEBUG, executerOpts, e.executerOpts)
 	if !noCluster {
 		finalTemplates, _ = templates.ClusterTemplates(templatesList, e.executerOpts)
 	} else {

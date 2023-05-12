@@ -703,7 +703,7 @@ func (r *Runner) executeTemplatesInput(executerOpts protocols.ExecuterOptions, s
 	// tracks global progress and captures stdout/stderr until p.Wait finishes
 	r.progress.Init(r.hmapInputProvider.Count(), templateCount, totalRequests)
 
-	results := engine.ExecuteScanWithOpts(finalTemplates, r.hmapInputProvider, true)
+	results := engine.ExecuteScanWithOpts(executerOpts, finalTemplates, r.hmapInputProvider, true)
 	return results, nil
 }
 

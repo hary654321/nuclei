@@ -1,6 +1,8 @@
 package core
 
 import (
+	"fmt"
+	"runtime/debug"
 	"sync"
 	"sync/atomic"
 
@@ -75,7 +77,8 @@ func (e *Engine) executeTemplateWithTargets(template *templates.Template, target
 		delete(currentInfo.InFlight, index)
 		currentInfo.Unlock()
 	}
-
+	slog.Println(slog.WARN, "target.Scan")
+	fmt.Printf("%s", debug.Stack())
 	target.Scan(func(scannedValue *contextargs.MetaInput) bool {
 		// Best effort to track the host progression
 		// skips indexes lower than the minimum in-flight at interruption time
@@ -128,6 +131,8 @@ func (e *Engine) executeTemplateWithTargets(template *templates.Template, target
 					})
 					match = true
 				} else {
+					slog.Println(slog.WARN, "target.Scan")
+					fmt.Printf("%s", debug.Stack())
 					slog.Println(slog.DEBUG, ctxArgs)
 					// fmt.Printf("%s", debug.Stack())
 					match, err = template.Executer.Execute(ctxArgs)
