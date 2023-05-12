@@ -22,13 +22,13 @@ import (
 // All the execution logic for the templates/workflows happens in this part
 // of the engine.
 func (e *Engine) Execute(templates []*templates.Template, target InputProvider) *atomic.Bool {
-	return e.ExecuteScanWithOpts(templates, target, false)
+	return e.ExecuteScanWithOpts(e.executerOpts, templates, target, false)
 }
 
 // ExecuteWithResults a list of templates with results
 func (e *Engine) ExecuteWithResults(templatesList []*templates.Template, target InputProvider, callback func(*output.ResultEvent)) *atomic.Bool {
 	e.Callback = callback
-	return e.ExecuteScanWithOpts(templatesList, target, false)
+	return e.ExecuteScanWithOpts(e.executerOpts, templatesList, target, false)
 }
 
 // ExecuteScanWithOpts executes scan with given scanStatergy
