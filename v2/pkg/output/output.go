@@ -17,6 +17,7 @@ import (
 
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/interactsh/pkg/server"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/colorizer"
 	"github.com/projectdiscovery/nuclei/v2/pkg/model"
 	"github.com/projectdiscovery/nuclei/v2/pkg/model/types/severity"
@@ -57,6 +58,7 @@ type StandardWriter struct {
 	severityColors   func(severity.Severity) string
 	storeResponse    bool
 	storeResponseDir string
+	filepath         string
 }
 
 var decolorizerRegex = regexp.MustCompile(`\x1B\[[0-9;]*[a-zA-Z]`)
@@ -146,6 +148,7 @@ func NewStandardWriter(options *types.Options) (*StandardWriter, error) {
 	auroraColorizer := aurora.NewAurora(!options.NoColor)
 
 	var outputFile io.WriteCloser
+	slog.Println(slog.DEBUG, "Creating output file", options.Output)
 	if options.Output != "" {
 		output, err := newFileOutputWriter(options.Output)
 		if err != nil {
@@ -189,6 +192,7 @@ func NewStandardWriter(options *types.Options) (*StandardWriter, error) {
 		severityColors:   colorizer.New(auroraColorizer),
 		storeResponse:    options.StoreResponse,
 		storeResponseDir: options.StoreResponseDir,
+		filepath:         options.Output,
 	}
 	return writer, nil
 }
@@ -218,13 +222,14 @@ func (w *StandardWriter) Write(event *ResultEvent) error {
 	w.mutex.Lock()
 	defer w.mutex.Unlock()
 
-	_, _ = os.Stdout.Write(data)
-	_, _ = os.Stdout.Write([]byte("\n"))
+	// _, _ = os.Stdout.Write(data)
+	// _, _ = os.Stdout.Write([]byte("\n"))
 
 	if w.outputFile != nil {
 		if !w.json {
 			data = decolorizerRegex.ReplaceAll(data, []byte(""))
 		}
+		slog.Println(slog.DEBUG, w.filepath)
 		if _, writeErr := w.outputFile.Write(data); writeErr != nil {
 			return errors.Wrap(err, "could not write to output")
 		}

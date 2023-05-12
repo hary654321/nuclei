@@ -18,6 +18,7 @@ import (
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/interactsh/pkg/client"
 	"github.com/projectdiscovery/interactsh/pkg/server"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/progress"
@@ -233,6 +234,7 @@ func (c *Client) processInteractionForRequest(interaction *server.Interaction, d
 	if c.options.Debug || c.options.DebugRequest || c.options.DebugResponse {
 		c.debugPrintInteraction(interaction, data.Event.OperatorsResult)
 	}
+	slog.Println(slog.DEBUG, "c.options.Output", c.options.Output)
 
 	if writer.WriteResult(data.Event, c.options.Output, c.options.Progress, c.options.IssuesClient) {
 		c.matched.Store(true)

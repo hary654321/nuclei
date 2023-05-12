@@ -14,8 +14,8 @@ import (
 func main() {
 
 	cmd.CleanLog()
-	utils.Write("/zrtx/log/cyberspace/worker.log", "")
-	var restart = "/zrtx/log/cyberspace/restart" + utils.GetHour() + ".json"
+	utils.Write(utils.LogPath+"worker.log", "")
+	var restart = utils.LogPath + "restart" + utils.GetHour() + ".json"
 	utils.WriteAppend(restart, utils.GetTime())
 
 	cache.NewCacheClient(time.Duration(30))

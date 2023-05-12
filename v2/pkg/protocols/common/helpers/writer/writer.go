@@ -2,6 +2,7 @@ package writer
 
 import (
 	"github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/progress"
 	"github.com/projectdiscovery/nuclei/v2/pkg/reporting"
@@ -15,6 +16,8 @@ func WriteResult(data *output.InternalWrappedEvent, output output.Writer, progre
 	if !data.HasOperatorResult() {
 		return false
 	}
+
+	slog.Println(slog.DEBUG, output)
 	var matched bool
 	for _, result := range data.Results {
 		if err := output.Write(result); err != nil {

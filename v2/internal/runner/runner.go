@@ -17,6 +17,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/runner/nucleicloud"
 
 	"github.com/blang/semver"
@@ -211,11 +212,11 @@ func New(options *types.Options) (*Runner, error) {
 	// runner.hmapInputProvider = hmapInput
 
 	// Create the output file if asked
-	outputWriter, err := output.NewStandardWriter(options)
-	if err != nil {
-		return nil, errors.Wrap(err, "could not create output file")
-	}
-	runner.output = outputWriter
+	// outputWriter, err := output.NewStandardWriter(options)
+	// if err != nil {
+	// 	return nil, errors.Wrap(err, "could not create output file")
+	// }
+	// runner.output = outputWriter
 
 	if options.JSON && options.EnableProgressBar {
 		options.StatsJSON = true
@@ -359,7 +360,7 @@ func (r *Runner) RunEnumeration(ip []string, taskId, tmp string) error {
 	} else {
 		r.options.Templates = []string{}
 	}
-	r.options.Output = "/zrtx/log/cyberspace/" + taskId + ".json"
+	r.options.Output = utils.LogPath + taskId + ".json"
 	os.OpenFile(r.options.Output, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0777)
 	options := r.options
 	// Initialize the input source
@@ -393,6 +394,7 @@ func (r *Runner) RunEnumeration(ip []string, taskId, tmp string) error {
 	if err != nil {
 		return errors.Wrap(err, "could not create output file")
 	}
+	// slog.Println(slog.DEBUG, "Output file created", outputWriter.filepath)
 	r.output = outputWriter
 
 	// If user asked for new templates to be executed, collect the list from the templates' directory.
@@ -583,6 +585,7 @@ func (r *Runner) RunEnumeration(ip []string, taskId, tmp string) error {
 			enumeration = true
 		}
 	} else {
+		slog.Println(slog.DEBUG, executerOpts.Output)
 		results, err = r.runStandardEnumeration(executerOpts, store, engine)
 		enumeration = true
 	}
@@ -650,7 +653,7 @@ func (r *Runner) executeSmartWorkflowInput(executerOpts protocols.ExecuterOption
 	return result, nil
 }
 
-func (r *Runner) executeTemplatesInput(store *loader.Store, engine *core.Engine) (*atomic.Bool, error) {
+func (r *Runner) executeTemplatesInput(executerOpts protocols.ExecuterOptions, store *loader.Store, engine *core.Engine) (*atomic.Bool, error) {
 	var unclusteredRequests int64
 	for _, template := range store.Templates() {
 		// slog.Println(slog.DEBUG, "store.Templates()", template)

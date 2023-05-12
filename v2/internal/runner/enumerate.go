@@ -17,6 +17,7 @@ import (
 	"github.com/klauspost/compress/zlib"
 	"github.com/pkg/errors"
 	"github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/runner/nucleicloud"
 	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/loader"
 	"github.com/projectdiscovery/nuclei/v2/pkg/core"
@@ -29,9 +30,11 @@ import (
 // runStandardEnumeration runs standard enumeration
 func (r *Runner) runStandardEnumeration(executerOpts protocols.ExecuterOptions, store *loader.Store, engine *core.Engine) (*atomic.Bool, error) {
 	if r.options.AutomaticScan {
+		slog.Println(slog.DEBUG, "Running automatic scan on targets")
 		return r.executeSmartWorkflowInput(executerOpts, store, engine)
 	}
-	return r.executeTemplatesInput(store, engine)
+	slog.Println(slog.DEBUG, "executeTemplatesInput")
+	return r.executeTemplatesInput(executerOpts, store, engine)
 }
 
 // runCloudEnumeration runs cloud based enumeration
@@ -117,6 +120,7 @@ func (r *Runner) runCloudEnumeration(store *loader.Store, cloudTemplates, cloudT
 		results.CompareAndSwap(false, true)
 		_ = count.Add(1)
 
+		slog.Println(slog.DEBUG, "Matched result", re)
 		if outputErr := r.output.Write(re); outputErr != nil {
 			gologger.Warning().Msgf("Could not write output: %s", err)
 		}

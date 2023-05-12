@@ -2,12 +2,14 @@ package executer
 
 import (
 	"fmt"
+	"runtime/debug"
 	"strings"
 	"sync/atomic"
 
 	"github.com/pkg/errors"
 
 	"github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/operators/common/dsl"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
@@ -62,7 +64,7 @@ func (e *Executer) Requests() int {
 // Execute executes the protocol group and returns true or false if results were found.
 func (e *Executer) Execute(input *contextargs.Context) (bool, error) {
 	results := &atomic.Bool{}
-
+	fmt.Printf("%s", debug.Stack())
 	dynamicValues := make(map[string]interface{})
 	if input.HasArgs() {
 		input.ForEach(func(key string, value interface{}) {
@@ -98,6 +100,7 @@ func (e *Executer) Execute(input *contextargs.Context) (bool, error) {
 					gologger.Warning().Msgf("Could not write failure event to output: %s\n", err)
 				}
 			} else {
+				slog.Println(slog.DEBUG, "c.options.Output", e.options.Output)
 				if writer.WriteResult(event, e.options.Output, e.options.Progress, e.options.IssuesClient) {
 					results.CompareAndSwap(false, true)
 				} else {

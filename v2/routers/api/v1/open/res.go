@@ -18,10 +18,9 @@ func GetZip(c *gin.Context) {
 	if day == "" {
 		day = utils.GetHour()
 	}
-	LogPath := "/zrtx/log/cyberspace"
-	target := LogPath + "/" + day + ".zip"
+	target := utils.LogPath + "/" + day + ".zip"
 
-	go utils.ZipFile(LogPath, target, "*"+day+".json")
+	go utils.ZipFile(utils.LogPath, target, "*"+day+".json")
 
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,

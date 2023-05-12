@@ -79,6 +79,7 @@ func (e *Engine) ExecuteScanWithOpts(templatesList []*templates.Template, target
 func (e *Engine) executeTemplateSpray(templatesList []*templates.Template, target InputProvider) *atomic.Bool {
 	results := &atomic.Bool{}
 
+	// fmt.Printf("%s", debug.Stack())
 	// wp is workpool that contains different waitgroups for
 	// headless and non-headless templates
 	wp := e.GetWorkPool()

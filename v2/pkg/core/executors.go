@@ -5,6 +5,7 @@ import (
 	"sync/atomic"
 
 	"github.com/projectdiscovery/gologger"
+	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/contextargs"
 	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
@@ -32,6 +33,7 @@ func (e *Engine) executeAllSelfContained(alltemplates []*templates.Template, res
 				})
 				match = true
 			} else {
+				slog.Println(slog.DEBUG, "1")
 				match, err = template.Executer.Execute(contextargs.New())
 			}
 			if err != nil {
@@ -126,6 +128,8 @@ func (e *Engine) executeTemplateWithTargets(template *templates.Template, target
 					})
 					match = true
 				} else {
+					slog.Println(slog.DEBUG, ctxArgs)
+					// fmt.Printf("%s", debug.Stack())
 					match, err = template.Executer.Execute(ctxArgs)
 				}
 			}
@@ -181,6 +185,7 @@ func (e *Engine) executeTemplatesOnTarget(alltemplates []*templates.Template, ta
 					})
 					match = true
 				} else {
+					slog.Println(slog.DEBUG, "1")
 					match, err = template.Executer.Execute(ctxArgs)
 				}
 			}
@@ -222,6 +227,7 @@ func (e *ChildExecuter) Execute(template *templates.Template, value *contextargs
 
 		ctxArgs := contextargs.New()
 		ctxArgs.MetaInput = value
+		slog.Println(slog.DEBUG, "1")
 		match, err := template.Executer.Execute(ctxArgs)
 		if err != nil {
 			gologger.Warning().Msgf("[%s] Could not execute step: %s\n", e.e.executerOpts.Colorizer.BrightBlue(template.ID), err)

@@ -262,6 +262,7 @@ func (e *ClusterExecuter) Execute(input *contextargs.Context) (bool, error) {
 				event.Results = e.requests.MakeResultEvent(event)
 				results = true
 
+				slog.Println(slog.DEBUG, "matched operator", e.options.Output)
 				_ = writer.WriteResult(event, e.options.Output, e.options.Progress, e.options.IssuesClient)
 			}
 		}

@@ -60,7 +60,7 @@ func RecTask(c *gin.Context) {
 
 	data["startTime"] = utils.GetTime()
 
-	data["res"] = utils.Read("/zrtx/log/cyberspace/" + taskId + ".json")
+	data["res"] = utils.Read(utils.LogPath + taskId + ".json")
 
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,
