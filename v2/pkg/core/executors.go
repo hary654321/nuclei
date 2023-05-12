@@ -133,7 +133,7 @@ func (e *Engine) executeTemplateWithTargets(template *templates.Template, target
 					// fmt.Printf("%s", debug.Stack())
 					slog.Println(slog.DEBUG, e.executerOpts.Output)
 					// fmt.Printf("%s", debug.Stack())
-					match, err = template.Executer.Execute(e.executerOpts.Output, ctxArgs)
+					match, err = template.Executer.Execute(e.executerOpts, ctxArgs)
 				}
 			}
 			if err != nil {

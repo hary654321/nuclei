@@ -232,7 +232,7 @@ func (e *ClusterExecuter) Requests() int {
 }
 
 // Execute executes the protocol group and returns true or false if results were found.
-func (e *ClusterExecuter) Execute(input *contextargs.Context) (bool, error) {
+func (e *ClusterExecuter) Execute(executerOpts protocols.ExecuterOptions, input *contextargs.Context) (bool, error) {
 	var results bool
 
 	inputItem := input.Clone()
