@@ -37,7 +37,7 @@ func (e *Engine) ExecuteScanWithOpts(executerOpts protocols.ExecuterOptions, tem
 	selfcontainedWg := &sync.WaitGroup{}
 
 	var finalTemplates []*templates.Template
-	slog.Println(slog.DEBUG, executerOpts, e.executerOpts)
+	// slog.Println(slog.DEBUG, executerOpts.Output, e.executerOpts.Output)
 	if !noCluster {
 		finalTemplates, _ = templates.ClusterTemplates(templatesList, e.executerOpts)
 	} else {
@@ -67,8 +67,10 @@ func (e *Engine) ExecuteScanWithOpts(executerOpts protocols.ExecuterOptions, tem
 	strategyResult := &atomic.Bool{}
 	switch e.options.ScanStrategy {
 	case scanstrategy.TemplateSpray.String():
+		// slog.Println(slog.DEBUG, executerOpts.Output, e.executerOpts.Output)
 		strategyResult = e.executeTemplateSpray(filtered, target)
 	case scanstrategy.TemplateSpray.String():
+		// slog.Println(slog.DEBUG, executerOpts.Output, e.executerOpts.Output)
 		strategyResult = e.executeHostSpray(filtered, target)
 	}
 
@@ -103,6 +105,7 @@ func (e *Engine) executeTemplateSpray(templatesList []*templates.Template, targe
 			// All other request types are executed here
 			// Note: executeTemplateWithTargets creates goroutines and blocks
 			// given template is executed on all targets
+			slog.Println(slog.DEBUG, e.executerOpts.Output)
 			e.executeTemplateWithTargets(tpl, target, results)
 		}(template)
 	}

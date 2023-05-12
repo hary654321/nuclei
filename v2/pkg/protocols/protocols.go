@@ -32,7 +32,7 @@ type Executer interface {
 	// Requests returns the total number of requests the rule will perform
 	Requests() int
 	// Execute executes the protocol group and returns true or false if results were found.
-	Execute(input *contextargs.Context) (bool, error)
+	Execute(executerOpts ExecuterOptions, input *contextargs.Context) (bool, error)
 	// ExecuteWithResults executes the protocol requests and returns results instead of writing them.
 	ExecuteWithResults(input *contextargs.Context, callback OutputEventCallback) error
 }

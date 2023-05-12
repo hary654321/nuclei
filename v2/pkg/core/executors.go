@@ -1,8 +1,6 @@
 package core
 
 import (
-	"fmt"
-	"runtime/debug"
 	"sync"
 	"sync/atomic"
 
@@ -36,7 +34,7 @@ func (e *Engine) executeAllSelfContained(alltemplates []*templates.Template, res
 				match = true
 			} else {
 				slog.Println(slog.DEBUG, "1")
-				match, err = template.Executer.Execute(contextargs.New())
+				match, err = template.Executer.Execute(e.executerOpts, contextargs.New())
 			}
 			if err != nil {
 				gologger.Warning().Msgf("[%s] Could not execute step: %s\n", e.executerOpts.Colorizer.BrightBlue(template.ID), err)
@@ -77,8 +75,8 @@ func (e *Engine) executeTemplateWithTargets(template *templates.Template, target
 		delete(currentInfo.InFlight, index)
 		currentInfo.Unlock()
 	}
-	slog.Println(slog.WARN, "target.Scan")
-	fmt.Printf("%s", debug.Stack())
+	// slog.Println(slog.WARN, "target.Scan")
+	// fmt.Printf("%s", debug.Stack())
 	target.Scan(func(scannedValue *contextargs.MetaInput) bool {
 		// Best effort to track the host progression
 		// skips indexes lower than the minimum in-flight at interruption time
@@ -131,11 +129,11 @@ func (e *Engine) executeTemplateWithTargets(template *templates.Template, target
 					})
 					match = true
 				} else {
-					slog.Println(slog.WARN, "target.Scan")
-					fmt.Printf("%s", debug.Stack())
-					slog.Println(slog.DEBUG, ctxArgs)
+					// slog.Println(slog.WARN, "target.Scan")
 					// fmt.Printf("%s", debug.Stack())
-					match, err = template.Executer.Execute(ctxArgs)
+					slog.Println(slog.DEBUG, e.executerOpts.Output)
+					// fmt.Printf("%s", debug.Stack())
+					match, err = template.Executer.Execute(e.executerOpts.Output, ctxArgs)
 				}
 			}
 			if err != nil {
@@ -191,7 +189,7 @@ func (e *Engine) executeTemplatesOnTarget(alltemplates []*templates.Template, ta
 					match = true
 				} else {
 					slog.Println(slog.DEBUG, "1")
-					match, err = template.Executer.Execute(ctxArgs)
+					match, err = template.Executer.Execute(e.executerOpts, ctxArgs)
 				}
 			}
 			if err != nil {
@@ -233,7 +231,7 @@ func (e *ChildExecuter) Execute(template *templates.Template, value *contextargs
 		ctxArgs := contextargs.New()
 		ctxArgs.MetaInput = value
 		slog.Println(slog.DEBUG, "1")
-		match, err := template.Executer.Execute(ctxArgs)
+		match, err := template.Executer.Execute(e.e.executerOpts, ctxArgs)
 		if err != nil {
 			gologger.Warning().Msgf("[%s] Could not execute step: %s\n", e.e.executerOpts.Colorizer.BrightBlue(template.ID), err)
 		}

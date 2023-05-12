@@ -83,7 +83,7 @@ func (e *Engine) runWorkflowStep(template *workflows.WorkflowTemplate, input *co
 			} else {
 				var matched bool
 				slog.Println(slog.DEBUG, "1")
-				matched, err = executer.Executer.Execute(input)
+				matched, err = executer.Executer.Execute(e.executerOpts, input)
 				if matched {
 					firstMatched = true
 				}
