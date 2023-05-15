@@ -19,14 +19,14 @@ func RecTask(c *gin.Context) {
 
 	taskId := c.PostForm("taskId")
 
-	if string(cache.Get(taskId)) != "" {
-		c.JSON(http.StatusOK, gin.H{
-			"code": 400,
-			"msg":  "任务已存在",
-			"data": "",
-		})
-		return
-	}
+	// if string(cache.Get(taskId)) != "" {
+	// 	c.JSON(http.StatusOK, gin.H{
+	// 		"code": 400,
+	// 		"msg":  "任务已存在",
+	// 		"data": "",
+	// 	})
+	// 	return
+	// }
 
 	cache.Set(taskId, []byte("1"))
 
