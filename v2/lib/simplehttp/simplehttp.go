@@ -139,8 +139,8 @@ func NewResponse(response *http.Response) *Response {
 
 func RandomUserAgent() string {
 	rand.Seed(time.Now().UnixNano())
-	i := rand.Intn(len(userAgents))
-	return userAgents[i] + " Time/" + strconv.FormatInt(time.Now().UnixMilli(), 10)
+	// i := rand.Intn(len(userAgents))
+	return userAgents[0] + " Time/" + strconv.FormatInt(time.Now().UnixMilli(), 10)
 }
 
 func Get(URL string) (resp *Response, err error) {
