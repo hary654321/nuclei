@@ -36,7 +36,7 @@ func RecTask(c *gin.Context) {
 	if tempContent != "" {
 		tmp = temPre + "/diy/" + tempName + ".yaml"
 		utils.Write(tmp, tempContent)
-	} else if tempName != "" {
+	} else if tempPath != "" {
 		tmp = temPre + tempPath
 
 		if !utils.FileExists(tmp) {
