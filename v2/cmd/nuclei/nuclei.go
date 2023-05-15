@@ -82,9 +82,9 @@ func Scan(ip []string, tmp string, taskId string) {
 	TaskCount++
 	if err := runnerSin.RunEnumeration(ip, taskId, tmp); err != nil {
 		if options.Validate {
-			gologger.Fatal().Msgf("Could not validate templates: %s\n", err)
+			slog.Println(slog.DEBUG, "Could not validate templates: %s\n", err)
 		} else {
-			gologger.Fatal().Msgf("Could not run nuclei: %s\n", err)
+			slog.Println(slog.DEBUG, "Could not run nuclei: %s\n", err)
 		}
 	}
 	slog.Println(slog.DEBUG, "运行完成TaskCount:", TaskCount)
