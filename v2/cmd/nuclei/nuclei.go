@@ -210,10 +210,10 @@ on extensive configurability, massive extensibility and ease of use.`)
 	flagSet.CreateGroup("rate-limit", "Rate-Limit",
 		flagSet.IntVarP(&options.RateLimit, "rate-limit", "rl", 1500, "maximum number of requests to send per second"),
 		flagSet.IntVarP(&options.RateLimitMinute, "rate-limit-minute", "rlm", 0, "maximum number of requests to send per minute"),
-		flagSet.IntVarP(&options.BulkSize, "bulk-size", "bs", 1000, "maximum number of hosts to be analyzed in parallel per template"),
-		flagSet.IntVarP(&options.TemplateThreads, "concurrency", "c", 1000, "maximum number of templates to be executed in parallel"),
-		flagSet.IntVarP(&options.HeadlessBulkSize, "headless-bulk-size", "hbs", 1000, "maximum number of headless hosts to be analyzed in parallel per template"),
-		flagSet.IntVarP(&options.HeadlessTemplateThreads, "headless-concurrency", "headc", 1000, "maximum number of headless templates to be executed in parallel"),
+		flagSet.IntVarP(&options.BulkSize, "bulk-size", "bs", 250, "maximum number of hosts to be analyzed in parallel per template"),
+		flagSet.IntVarP(&options.TemplateThreads, "concurrency", "c", 250, "maximum number of templates to be executed in parallel"),
+		flagSet.IntVarP(&options.HeadlessBulkSize, "headless-bulk-size", "hbs", 100, "maximum number of headless hosts to be analyzed in parallel per template"),
+		flagSet.IntVarP(&options.HeadlessTemplateThreads, "headless-concurrency", "headc", 100, "maximum number of headless templates to be executed in parallel"),
 	)
 
 	flagSet.CreateGroup("optimization", "Optimizations",
