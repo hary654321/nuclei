@@ -114,6 +114,7 @@ func ClusterID(templates []*Template) string {
 	return cryptoutil.SHA256Sum(ids)
 }
 
+// ClusterTemplates clusters a list of templates into a lesser number if possible based
 func ClusterTemplates(templatesList []*Template, options protocols.ExecuterOptions) ([]*Template, int) {
 	if options.Options.OfflineHTTP || options.Options.DisableClustering {
 		return templatesList, 0
