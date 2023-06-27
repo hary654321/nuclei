@@ -6,7 +6,6 @@ import (
 
 	"github.com/remeh/sizedwaitgroup"
 
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/contextargs"
@@ -105,7 +104,7 @@ func (e *Engine) executeTemplateSpray(templatesList []*templates.Template, targe
 			// All other request types are executed here
 			// Note: executeTemplateWithTargets creates goroutines and blocks
 			// given template is executed on all targets
-			slog.Println(slog.DEBUG, e.executerOpts.Output)
+			// slog.Println(slog.DEBUG, e.executerOpts.Output)
 			e.executeTemplateWithTargets(tpl, target, results)
 		}(template)
 	}
