@@ -33,7 +33,7 @@ func (r *Runner) runStandardEnumeration(executerOpts protocols.ExecuterOptions, 
 		slog.Println(slog.DEBUG, "Running automatic scan on targets")
 		return r.executeSmartWorkflowInput(executerOpts, store, engine)
 	}
-	slog.Println(slog.DEBUG, "executeTemplatesInput")
+	// slog.Println(slog.DEBUG, "executeTemplatesInput")
 	return r.executeTemplatesInput(executerOpts, store, engine)
 }
 

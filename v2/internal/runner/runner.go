@@ -17,7 +17,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/internal/runner/nucleicloud"
 
 	"github.com/blang/semver"
@@ -585,7 +584,7 @@ func (r *Runner) RunEnumeration(ip []string, taskId, tmp string) error {
 			enumeration = true
 		}
 	} else {
-		slog.Println(slog.DEBUG, executerOpts.Output)
+		// slog.Println(slog.DEBUG, executerOpts.Output)
 		results, err = r.runStandardEnumeration(executerOpts, store, engine)
 		enumeration = true
 	}
