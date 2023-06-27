@@ -8,7 +8,6 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
 	"github.com/projectdiscovery/nuclei/v2/pkg/operators/common/dsl"
 	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
@@ -99,8 +98,8 @@ func (e *Executer) Execute(executerOpts protocols.ExecuterOptions, input *contex
 					gologger.Warning().Msgf("Could not write failure event to output: %s\n", err)
 				}
 			} else {
-				slog.Println(slog.DEBUG, "c.options.Output", e.options.Output)
-				slog.Println(slog.DEBUG, "executerOpts.Output", executerOpts.Output)
+				// slog.Println(slog.DEBUG, "c.options.Output", e.options.Output)
+				// slog.Println(slog.DEBUG, "executerOpts.Output", executerOpts.Output)
 				if writer.WriteResult(event, executerOpts.Output, e.options.Progress, e.options.IssuesClient) {
 					results.CompareAndSwap(false, true)
 				} else {

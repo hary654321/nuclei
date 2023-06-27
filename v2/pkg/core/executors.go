@@ -131,7 +131,7 @@ func (e *Engine) executeTemplateWithTargets(template *templates.Template, target
 				} else {
 					// slog.Println(slog.WARN, "target.Scan")
 					// fmt.Printf("%s", debug.Stack())
-					slog.Println(slog.DEBUG, e.executerOpts.Output)
+					// slog.Println(slog.DEBUG, e.executerOpts.Output)
 					// fmt.Printf("%s", debug.Stack())
 					match, err = template.Executer.Execute(e.executerOpts, ctxArgs)
 				}
