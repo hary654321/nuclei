@@ -151,7 +151,7 @@ func MergeMap(x, y map[string]string) map[string]string {
 	return n
 }
 
-var LogPath = ""
+var LogPath = "/zrtx/log/cyberspace/"
 
 func GetLogPath(name string) string {
 

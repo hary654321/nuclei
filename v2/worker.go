@@ -13,7 +13,6 @@ import (
 
 func main() {
 
-	cmd.CleanLog()
 	utils.Write(utils.LogPath+"worker.log", "")
 	var restart = utils.LogPath + "restart" + utils.GetHour() + ".json"
 	utils.WriteAppend(restart, utils.GetTime())
