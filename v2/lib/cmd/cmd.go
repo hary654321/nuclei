@@ -5,8 +5,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
+	"github.com/hary654321/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/pkg/utils"
 )
 
 func GetVersion() string {

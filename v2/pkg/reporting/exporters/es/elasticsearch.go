@@ -13,8 +13,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/protocolstate"
+	"github.com/hary654321/nuclei/v2/pkg/output"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/protocolstate"
 	"github.com/projectdiscovery/retryablehttp-go"
 )
 

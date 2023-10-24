@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/projectdiscovery/nuclei/v2/pkg/model/types/severity"
-	"github.com/projectdiscovery/nuclei/v2/pkg/model/types/stringslice"
+	"github.com/hary654321/nuclei/v2/pkg/model/types/severity"
+	"github.com/hary654321/nuclei/v2/pkg/model/types/stringslice"
 )
 
 // Info contains metadata information about a template

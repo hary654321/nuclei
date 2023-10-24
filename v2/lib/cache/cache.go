@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/allegro/bigcache/v3"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/core/slog"
 )
 
 var cli *bigcache.BigCache

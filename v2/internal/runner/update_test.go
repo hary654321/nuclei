@@ -13,9 +13,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
+	"github.com/hary654321/nuclei/v2/pkg/catalog/config"
+	"github.com/hary654321/nuclei/v2/pkg/testutils"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
-	"github.com/projectdiscovery/nuclei/v2/pkg/testutils"
 )
 
 func TestDownloadReleaseAndUnzipAddition(t *testing.T) {

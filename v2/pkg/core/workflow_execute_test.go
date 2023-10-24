@@ -3,14 +3,14 @@ package core
 import (
 	"testing"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/model/types/stringslice"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/progress"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/contextargs"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
-	"github.com/projectdiscovery/nuclei/v2/pkg/workflows"
+	"github.com/hary654321/nuclei/v2/pkg/model/types/stringslice"
+	"github.com/hary654321/nuclei/v2/pkg/operators"
+	"github.com/hary654321/nuclei/v2/pkg/output"
+	"github.com/hary654321/nuclei/v2/pkg/progress"
+	"github.com/hary654321/nuclei/v2/pkg/protocols"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/contextargs"
+	"github.com/hary654321/nuclei/v2/pkg/types"
+	"github.com/hary654321/nuclei/v2/pkg/workflows"
 	"github.com/stretchr/testify/require"
 )
 

@@ -7,11 +7,11 @@ import (
 
 	"github.com/remeh/sizedwaitgroup"
 
+	"github.com/hary654321/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/pkg/output"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/contextargs"
+	"github.com/hary654321/nuclei/v2/pkg/workflows"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/contextargs"
-	"github.com/projectdiscovery/nuclei/v2/pkg/workflows"
 )
 
 const workflowStepExecutionError = "[%s] Could not execute workflow step: %s\n"

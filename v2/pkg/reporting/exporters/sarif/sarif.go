@@ -6,9 +6,9 @@ import (
 	"path"
 	"sync"
 
+	"github.com/hary654321/nuclei/v2/pkg/catalog/config"
+	"github.com/hary654321/nuclei/v2/pkg/output"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
 	"github.com/projectdiscovery/sarif"
 )
 

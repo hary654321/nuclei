@@ -1,13 +1,13 @@
 package reporting
 
 import (
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/es"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/markdown"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/sarif"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/exporters/splunk"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/trackers/github"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/trackers/gitlab"
-	"github.com/projectdiscovery/nuclei/v2/pkg/reporting/trackers/jira"
+	"github.com/hary654321/nuclei/v2/pkg/reporting/exporters/es"
+	"github.com/hary654321/nuclei/v2/pkg/reporting/exporters/markdown"
+	"github.com/hary654321/nuclei/v2/pkg/reporting/exporters/sarif"
+	"github.com/hary654321/nuclei/v2/pkg/reporting/exporters/splunk"
+	"github.com/hary654321/nuclei/v2/pkg/reporting/trackers/github"
+	"github.com/hary654321/nuclei/v2/pkg/reporting/trackers/gitlab"
+	"github.com/hary654321/nuclei/v2/pkg/reporting/trackers/jira"
 	"github.com/projectdiscovery/retryablehttp-go"
 )
 

@@ -15,8 +15,8 @@ import (
 	"github.com/go-rod/rod/lib/input"
 	"github.com/go-rod/rod/lib/proto"
 	"github.com/go-rod/rod/lib/utils"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/generators"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/generators"
 	"github.com/segmentio/ksuid"
 )
 

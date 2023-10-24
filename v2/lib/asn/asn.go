@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/core/slog"
 )
 
 var BaseUrlRt = "https://tools.ipip.net/as.php?a=rt&ip="

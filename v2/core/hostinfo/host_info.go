@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
+	"github.com/hary654321/nuclei/v2/pkg/utils"
 	"github.com/shirou/gopsutil/v3/cpu"
 	"github.com/shirou/gopsutil/v3/disk"
 	"github.com/shirou/gopsutil/v3/host"

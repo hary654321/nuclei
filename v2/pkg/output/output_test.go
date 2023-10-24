@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 	"github.com/stretchr/testify/require"
 )
 

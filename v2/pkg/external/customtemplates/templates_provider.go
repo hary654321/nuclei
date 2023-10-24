@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 )
 
 const (

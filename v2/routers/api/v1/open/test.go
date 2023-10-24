@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
+	"github.com/hary654321/nuclei/v2/lib/cmd"
 )
 
 func Test(c *gin.Context) {

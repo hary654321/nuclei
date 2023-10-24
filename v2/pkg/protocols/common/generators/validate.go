@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/fileutil"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 	folderutil "github.com/projectdiscovery/utils/folder"
 )
 

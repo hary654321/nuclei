@@ -5,11 +5,11 @@ import (
 	"strings"
 
 	"github.com/alecthomas/jsonschema"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/expressions"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/generators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/interactsh"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/expressions"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/generators"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/interactsh"
+	"github.com/hary654321/nuclei/v2/pkg/types"
+	"github.com/hary654321/nuclei/v2/pkg/utils"
 )
 
 // Variable is a key-value pair of strings that can be used

@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/templates/extensions"
+	"github.com/hary654321/nuclei/v2/pkg/templates/extensions"
 )
 
 // TemplateFormat

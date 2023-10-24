@@ -9,8 +9,8 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/hary654321/nuclei/v2/lib/color"
 	"github.com/lcvvvv/stdio"
-	"github.com/projectdiscovery/nuclei/v2/lib/color"
 )
 
 type Level int

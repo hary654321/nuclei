@@ -11,15 +11,15 @@ import (
 
 	"github.com/go-playground/validator/v10"
 
+	"github.com/hary654321/nuclei/v2/pkg/catalog/config"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/protocolinit"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/utils/vardump"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/headless/engine"
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/goflags"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/gologger/formatter"
 	"github.com/projectdiscovery/gologger/levels"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/protocolinit"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/utils/vardump"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/headless/engine"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/stringsutil"
 	fileutil "github.com/projectdiscovery/utils/file"
 )

@@ -8,7 +8,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
-	//"github.com/projectdiscovery/nuclei/v2/core/slog"
+	//"github.com/hary654321/nuclei/v2/core/slog"
 )
 
 var logger = Logger(log.New(os.Stderr, "[pool]", log.Ldate|log.Ltime))

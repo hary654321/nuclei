@@ -17,10 +17,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils/yaml"
+	"github.com/hary654321/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/pkg/catalog"
+	"github.com/hary654321/nuclei/v2/pkg/catalog/config"
+	"github.com/hary654321/nuclei/v2/pkg/utils/yaml"
 	"github.com/projectdiscovery/retryablehttp-go"
 	fileutil "github.com/projectdiscovery/utils/file"
 )

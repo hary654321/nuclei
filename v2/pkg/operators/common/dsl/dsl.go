@@ -37,13 +37,13 @@ import (
 	"github.com/logrusorgru/aurora"
 	"github.com/spaolacci/murmur3"
 
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/helpers/deserialization"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/randomip"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/dns/dnsclientpool"
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/miekg/dns"
 	"github.com/projectdiscovery/gologger"
 	"github.com/projectdiscovery/mapcidr"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/helpers/deserialization"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/randomip"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/dns/dnsclientpool"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 	sliceutil "github.com/projectdiscovery/utils/slice"
 )
 

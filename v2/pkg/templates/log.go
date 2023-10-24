@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/hary654321/nuclei/v2/pkg/model/types/severity"
 	"github.com/logrusorgru/aurora"
-	"github.com/projectdiscovery/nuclei/v2/pkg/model/types/severity"
 )
 
 var (

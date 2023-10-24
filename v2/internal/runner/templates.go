@@ -7,13 +7,13 @@ import (
 	"strings"
 
 	"github.com/alecthomas/chroma/quick"
+	"github.com/hary654321/nuclei/v2/pkg/catalog/loader"
 	"github.com/logrusorgru/aurora"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/loader"
 
+	"github.com/hary654321/nuclei/v2/pkg/parsers"
+	"github.com/hary654321/nuclei/v2/pkg/templates"
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/parsers"
-	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 )
 
 // log available templates for verbose (-vv)

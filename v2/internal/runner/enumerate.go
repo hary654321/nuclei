@@ -14,17 +14,17 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/hary654321/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/internal/runner/nucleicloud"
+	"github.com/hary654321/nuclei/v2/pkg/catalog/loader"
+	"github.com/hary654321/nuclei/v2/pkg/core"
+	"github.com/hary654321/nuclei/v2/pkg/output"
+	"github.com/hary654321/nuclei/v2/pkg/protocols"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/contextargs"
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/klauspost/compress/zlib"
 	"github.com/pkg/errors"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
-	"github.com/projectdiscovery/nuclei/v2/internal/runner/nucleicloud"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/loader"
-	"github.com/projectdiscovery/nuclei/v2/pkg/core"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/contextargs"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 )
 
 // runStandardEnumeration runs standard enumeration

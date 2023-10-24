@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/hary654321/nuclei/v2/core/slog"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
 )
 
 // 换行的数据

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/testutils"
+	"github.com/hary654321/nuclei/v2/pkg/testutils"
 )
 
 type customConfigDirTest struct{}

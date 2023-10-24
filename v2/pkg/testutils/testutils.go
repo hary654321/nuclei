@@ -8,15 +8,15 @@ import (
 
 	"github.com/logrusorgru/aurora"
 
+	"github.com/hary654321/nuclei/v2/pkg/catalog/disk"
+	"github.com/hary654321/nuclei/v2/pkg/model"
+	"github.com/hary654321/nuclei/v2/pkg/model/types/severity"
+	"github.com/hary654321/nuclei/v2/pkg/output"
+	"github.com/hary654321/nuclei/v2/pkg/progress"
+	"github.com/hary654321/nuclei/v2/pkg/protocols"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/protocolinit"
+	"github.com/hary654321/nuclei/v2/pkg/types"
 	"github.com/projectdiscovery/gologger/levels"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/disk"
-	"github.com/projectdiscovery/nuclei/v2/pkg/model"
-	"github.com/projectdiscovery/nuclei/v2/pkg/model/types/severity"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/progress"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/protocolinit"
-	"github.com/projectdiscovery/nuclei/v2/pkg/types"
 )
 
 // Init initializes the protocols and their configurations

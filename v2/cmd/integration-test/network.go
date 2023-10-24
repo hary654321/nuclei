@@ -3,7 +3,7 @@ package main
 import (
 	"net"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/testutils"
+	"github.com/hary654321/nuclei/v2/pkg/testutils"
 )
 
 var networkTestcases = map[string]testutils.TestCase{

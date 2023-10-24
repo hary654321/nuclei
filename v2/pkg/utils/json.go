@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/core/slog"
 )
 
 func WriteJson(path string, data interface{}) {

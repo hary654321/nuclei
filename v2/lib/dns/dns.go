@@ -5,8 +5,8 @@ import (
 	"net"
 	"time"
 
+	"github.com/hary654321/nuclei/v2/lib/misc"
 	"github.com/miekg/dns"
-	"github.com/projectdiscovery/nuclei/v2/lib/misc"
 )
 
 var domainServers = []string{

@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
+	"github.com/hary654321/nuclei/v2/pkg/utils"
 )
 
 func TestCert(t *testing.T) {

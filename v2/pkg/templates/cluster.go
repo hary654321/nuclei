@@ -5,15 +5,15 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/hary654321/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/pkg/model"
+	"github.com/hary654321/nuclei/v2/pkg/operators"
+	"github.com/hary654321/nuclei/v2/pkg/output"
+	"github.com/hary654321/nuclei/v2/pkg/protocols"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/contextargs"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/helpers/writer"
+	"github.com/hary654321/nuclei/v2/pkg/templates/types"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
-	"github.com/projectdiscovery/nuclei/v2/pkg/model"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/output"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/contextargs"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/helpers/writer"
-	"github.com/projectdiscovery/nuclei/v2/pkg/templates/types"
 	cryptoutil "github.com/projectdiscovery/utils/crypto"
 )
 

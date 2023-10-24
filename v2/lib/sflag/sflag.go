@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/projectdiscovery/nuclei/v2/lib/misc"
+	"github.com/hary654321/nuclei/v2/lib/misc"
 )
 
 var (

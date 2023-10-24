@@ -5,9 +5,9 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
-	"github.com/projectdiscovery/nuclei/v2/lib/cache"
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
+	"github.com/hary654321/nuclei/v2/cmd/nuclei"
+	"github.com/hary654321/nuclei/v2/lib/cache"
+	"github.com/hary654321/nuclei/v2/pkg/utils"
 )
 
 func RecTask(c *gin.Context) {

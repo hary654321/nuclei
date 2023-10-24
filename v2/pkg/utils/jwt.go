@@ -25,7 +25,7 @@ func GenerateToken(username, password string) (string, error) {
 		password,
 		jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
-			Issuer:    "github.com/projectdiscovery/nuclei/v2",
+			Issuer:    "github.com/hary654321/nuclei/v2",
 		},
 	}
 

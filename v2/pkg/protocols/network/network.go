@@ -5,12 +5,12 @@ import (
 
 	"github.com/pkg/errors"
 
+	"github.com/hary654321/nuclei/v2/pkg/operators"
+	"github.com/hary654321/nuclei/v2/pkg/protocols"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/expressions"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/generators"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/network/networkclientpool"
 	"github.com/projectdiscovery/fastdialer/fastdialer"
-	"github.com/projectdiscovery/nuclei/v2/pkg/operators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/expressions"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/generators"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/network/networkclientpool"
 	fileutil "github.com/projectdiscovery/utils/file"
 )
 

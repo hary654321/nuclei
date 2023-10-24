@@ -3,12 +3,12 @@ package main
 import (
 	"time"
 
-	"github.com/projectdiscovery/nuclei/v2/cmd/nuclei"
-	"github.com/projectdiscovery/nuclei/v2/core/slog"
-	"github.com/projectdiscovery/nuclei/v2/lib/cache"
-	"github.com/projectdiscovery/nuclei/v2/lib/cmd"
-	"github.com/projectdiscovery/nuclei/v2/pkg/utils"
-	"github.com/projectdiscovery/nuclei/v2/routers"
+	"github.com/hary654321/nuclei/v2/cmd/nuclei"
+	"github.com/hary654321/nuclei/v2/core/slog"
+	"github.com/hary654321/nuclei/v2/lib/cache"
+	"github.com/hary654321/nuclei/v2/lib/cmd"
+	"github.com/hary654321/nuclei/v2/pkg/utils"
+	"github.com/hary654321/nuclei/v2/routers"
 )
 
 func main() {

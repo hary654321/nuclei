@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/hary654321/nuclei/v2/pkg/templates"
 	"github.com/pkg/errors"
 	"github.com/projectdiscovery/gologger"
-	"github.com/projectdiscovery/nuclei/v2/pkg/templates"
 	"github.com/projectdiscovery/ratelimit"
 	ucRunner "github.com/projectdiscovery/uncover/runner"
 	"github.com/projectdiscovery/uncover/uncover"

@@ -1,10 +1,10 @@
 package routers
 
 import (
-	"github.com/projectdiscovery/nuclei/v2/routers/api/v1/open"
+	"github.com/hary654321/nuclei/v2/routers/api/v1/open"
 
 	"github.com/gin-gonic/gin"
-	"github.com/projectdiscovery/nuclei/v2/middleware/jwt"
+	"github.com/hary654321/nuclei/v2/middleware/jwt"
 )
 
 func loadApiV1Open(r *gin.Engine) {

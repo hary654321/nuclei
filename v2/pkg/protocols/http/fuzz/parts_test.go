@@ -3,8 +3,8 @@ package fuzz
 import (
 	"testing"
 
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols"
-	"github.com/projectdiscovery/nuclei/v2/pkg/protocols/common/interactsh"
+	"github.com/hary654321/nuclei/v2/pkg/protocols"
+	"github.com/hary654321/nuclei/v2/pkg/protocols/common/interactsh"
 	urlutil "github.com/projectdiscovery/utils/url"
 	"github.com/stretchr/testify/require"
 )

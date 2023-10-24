@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/hary654321/nuclei/v2/pkg/catalog/config"
 	"github.com/pkg/errors"
-	"github.com/projectdiscovery/nuclei/v2/pkg/catalog/config"
 	stringsutil "github.com/projectdiscovery/utils/strings"
 )
 
